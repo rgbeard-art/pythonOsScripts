@@ -1,0 +1,62 @@
+#sort.py
+'''Things to add'''
+#find a nice way to the sort the reff folder.
+#sort by color or name or something else
+#ask for the directory not defult desktop
+
+#Move all images from desktop to a folder. I usually just drag reff images down to my desktop and this helps to clean it up faster.
+
+import os
+import os.path
+
+
+#find user desktop
+userhome = os.path.expanduser('~')
+desktop = userhome + '/Desktop/'
+
+'''def ensure_dir(f):
+    d = os.path.dirname(f)
+    if not os.path.exists(d):
+	os.makedirs(d)
+'''
+
+
+inputDir = input('In what folder to you whant the images ' + str(desktop))
+
+print (inputDir)
+source = str(desktop)
+destination = desktop + inputDir
+try:
+    os.stat(destination)
+
+    #make list of all images
+    included_extenstions = ['jpg', 'bmp', 'png', 'gif','jpeg','JPG','PNG']
+    file_names = [fn for fn in os.listdir(source)
+                  if any(fn.endswith(ext) for ext in included_extenstions)]
+
+    #move images
+    for f in file_names:
+        os.rename(source + '/' + f, destination + '/' + f)
+        
+    print ('Successfully moved ' + str(len(file_names)) + ' images.')
+
+except:
+    os.mkdir(destination) 
+
+
+    #make list of all images
+    included_extenstions = ['jpg', 'bmp', 'png', 'gif','jpeg','JPG','PNG']
+    file_names = [fn for fn in os.listdir(source)
+                  if any(fn.endswith(ext) for ext in included_extenstions)]
+
+    #move images
+    for f in file_names:
+        os.rename(source + '/' + f, destination + '/' + f)
+
+
+
+    print ('Successfully moved ' + str(len(file_names)) + ' images.')
+        
+    
+
+
